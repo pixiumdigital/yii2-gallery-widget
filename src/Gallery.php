@@ -146,6 +146,7 @@ class Gallery extends Widget
         $template[] = '<a class="close">×</a>';
         $template[] = '<a class="play-pause"></a>';
         $template[] = '<ol class="indicator"></ol>';
+        $template[] = '<p class="description"></p>';
 
         return Html::tag('div', implode("\n", $template), $this->templateOptions);
     }
