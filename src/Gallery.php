@@ -141,12 +141,12 @@ class Gallery extends Widget
 
         $template[] = '<div class="slides"></div>';
         $template[] = '<h3 class="title"></h3>';
+        $template[] = '<p class="description"></p>';
         $template[] = '<a class="prev">‹</a>';
         $template[] = '<a class="next">›</a>';
         $template[] = '<a class="close">×</a>';
         $template[] = '<a class="play-pause"></a>';
         $template[] = '<ol class="indicator"></ol>';
-        $template[] = '<p class="description"></p>';
 
         return Html::tag('div', implode("\n", $template), $this->templateOptions);
     }
