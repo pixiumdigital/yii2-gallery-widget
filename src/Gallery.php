@@ -4,7 +4,6 @@
  * @copyright Copyright (c) 2013-2016 2amigOS! Consulting Group LLC
  * @license http://opensource.org/licenses/BSD-3-Clause
  */
-
 namespace dosamigos\gallery;
 
 use yii\base\Widget;
@@ -21,7 +20,7 @@ use yii\web\JsExpression;
 class Gallery extends Widget
 {
     //2019-03-06 Lio @ Pixium Digital Pte Ltd
-    static $singleRender = false; // render template only once to avoid curtaining effect
+    public static $singleRender = false; // render template only once to avoid curtaining effect
 
     /**
      * @var array the HTML attributes for the links container tag.
@@ -53,11 +52,16 @@ class Gallery extends Widget
      * - options: HTML attributes of the link
      * - imageOptions: HTML attributes of the image to be displayed
      */
-    public $items = array();
+    public $items = [];
     /**
      * @var bool whether to display the controls on initialization
      */
     public $showControls = true;
+
+    /**
+     * renderOptions
+     */
+    public $renderOptions = [];
 
     /**
      * @inheritdoc
@@ -74,8 +78,8 @@ class Gallery extends Widget
             Html::addCssClass($this->templateOptions, 'blueimp-gallery-controls');
         }
 
-        foreach($this->clientEvents as $key => $event) {
-            if(!($event instanceof JsExpression)) {
+        foreach ($this->clientEvents as $key => $event) {
+            if (!($event instanceof JsExpression)) {
                 $this->clientOptions[$key] = new JsExpression($event);
             }
         }
@@ -103,6 +107,7 @@ class Gallery extends Widget
         foreach ($this->items as $item) {
             $items[] = $this->renderItem($item);
         }
+
         return Html::tag('div', implode("\n", array_filter($items)), $this->options);
     }
 
@@ -136,10 +141,12 @@ class Gallery extends Widget
         if (!self::$singleRender) {
             self::$singleRender = true;
         } else {
-            return "<-- NO RENDER -->";
+            return '<-- NO RENDER -->';
         }
 
         $template[] = '<div class="slides"></div>';
+        $overlayClass = $this->renderOptions['overlayClass'] ?? 'overlay';
+        $template[] = "<div class='{$$overlayClass}'></div>";
         $template[] = '<h3 class="title"></h3>';
         $template[] = '<p class="description"></p>';
         $template[] = '<a class="prev">‹</a>';
