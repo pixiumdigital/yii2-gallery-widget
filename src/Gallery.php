@@ -146,7 +146,7 @@ class Gallery extends Widget
 
         $template[] = '<div class="slides"></div>';
         $overlayClass = $this->renderOptions['overlayClass'] ?? 'overlay';
-        $template[] = "<div class='{$$overlayClass}'></div>";
+        $template[] = "<div class='{$overlayClass}'></div>";
         $template[] = '<h3 class="title"></h3>';
         $template[] = '<p class="description"></p>';
         $template[] = '<a class="prev">‹</a>';
