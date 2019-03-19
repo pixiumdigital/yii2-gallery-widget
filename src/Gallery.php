@@ -146,7 +146,7 @@ class Gallery extends Widget
             return '<-- NO RENDER -->';
         }
 
-        if ($this > wrapClass) {
+        if ($this->wrapClass) {
             $template[] = '<div class="slides">';
         }
         // slides go here
@@ -154,10 +154,9 @@ class Gallery extends Widget
         if ($this->overlayClass) {
             $template[] = "<img class='{$this->overlayClass}'>";
         }
-        if ($this > wrapClass) {
+        if ($this->wrapClass) {
             $template[] = '</div>';
         }
-        $template[] = "<div class='{$overlayClass}'></div>";
         $template[] = '<h3 class="title"></h3>';
         $template[] = '<p class="description"></p>';
         $template[] = '<a class="prev">‹</a>';
