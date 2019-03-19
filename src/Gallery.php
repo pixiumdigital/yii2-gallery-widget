@@ -61,7 +61,9 @@ class Gallery extends Widget
     /**
      * renderOptions
      */
-    public $renderOptions = [];
+    //Last Modified - 2019-03-19 Lio @ Pixium Digital Pte Ltd
+    public $wrapClass = null;
+    public $overlayClass = null;
 
     /**
      * @inheritdoc
@@ -144,8 +146,17 @@ class Gallery extends Widget
             return '<-- NO RENDER -->';
         }
 
+        if ($this > wrapClass) {
+            $template[] = '<div class="slides">';
+        }
+        // slides go here
         $template[] = '<div class="slides"></div>';
-        $overlayClass = $this->renderOptions['overlayClass'] ?? 'overlay';
+        if ($this->overlayClass) {
+            $template[] = "<img class='{$this->overlayClass}'>";
+        }
+        if ($this > wrapClass) {
+            $template[] = '</div>';
+        }
         $template[] = "<div class='{$overlayClass}'></div>";
         $template[] = '<h3 class="title"></h3>';
         $template[] = '<p class="description"></p>';
