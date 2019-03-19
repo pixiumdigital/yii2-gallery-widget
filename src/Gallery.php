@@ -147,15 +147,13 @@ class Gallery extends Widget
         }
 
         if ($this->wrapClass) {
-            $template[] = '<div class="slides">';
-        }
-        // slides go here
-        $template[] = '<div class="slides"></div>';
-        if ($this->overlayClass) {
-            $template[] = "<img class='{$this->overlayClass}'>";
-        }
-        if ($this->wrapClass) {
-            $template[] = '</div>';
+            // wrapped
+            $template[] = "<div class='{$this->wrapClass}'>\n"
+                ."<div class='slides'></div>"
+                .(($this->overlayClass) ? "<img class='{$this->overlayClass}'>" : '')
+                .'</div>';
+        } else {
+            $template[] = '<div class="slides"></div>';
         }
         $template[] = '<h3 class="title"></h3>';
         $template[] = '<p class="description"></p>';
