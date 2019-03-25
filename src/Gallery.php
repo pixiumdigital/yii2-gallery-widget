@@ -143,13 +143,13 @@ class Gallery extends Widget
         if (!self::$singleRender) {
             self::$singleRender = true;
         } else {
-            return '<-- NO RENDER -->';
+            return '<!-- NO RENDER -->';
         }
 
         if ($this->wrapClass) {
             // wrapped
             $template[] = "<div class='{$this->wrapClass}'>\n"
-                ."<div class='slides'></div>"
+                .'<div class="slides"></div>'
                 .(($this->overlayClass) ? "<img class='{$this->overlayClass}'>" : '')
                 .'</div>';
         } else {
